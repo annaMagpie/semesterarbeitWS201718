@@ -1,0 +1,22 @@
+<!-- DTD document mediacenter.xml -->
+
+<!ELEMENT mediacenter (movie+)>
+<!ELEMENT movie ( genre,title,hook,director+,release,runtime,medium* )>
+
+
+<!ATTLIST movie id CDATA #REQUIRED>
+<!ATTLIST runtime unit CDATA #IMPLIED>
+
+<!ELEMENT genre (#PCDATA)>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT hook (#PCDATA)>
+<!ELEMENT director (#PCDATA) >
+<!ELEMENT release (#PCDATA) >
+<!ELEMENT runtime (#PCDATA) >
+
+<!--medium, price & stock in Hinblick auf Stufe 4 der Semesterarbeit:-->
+<!ELEMENT medium (price?, stock?)>
+<!ELEMENT price (#PCDATA) >
+<!ELEMENT stock (#PCDATA) >
+
+
