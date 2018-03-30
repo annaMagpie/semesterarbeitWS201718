@@ -1,74 +1,52 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mediacenter SYSTEM "mediacenter.dtd">
 <mediacenter>
-	<movie id="107">
-		<genre>Romance</genre>
-		<title>The Notebook</title>
-		<hook>
-			A poor yet passionate young man falls in love with a rich young woman, giving her a sense of freedom, but they are soon separated because of their social differences. - IMDb
-		</hook>
-		<director>Nick Cassavetes</director>
-		<release>2004</release>
-		<runtime unit="min">123</runtime>
-	</movie>
-	<movie id="122">
-		<genre>Horror</genre>
-		<title>Saw 3D - Final Chapter</title>
-		<hook>
-			As a deadly battle rages over Jigsaw's brutal legacy, a group of Jigsaw survivors gathers to seek the support of self-help guru and fellow survivor Bobby Dagen, a man whose own dark secrets unleash a new wave of terror. - IMDb
-		</hook>
-		<director>Kevin Greutert</director>
-		<release>2010</release>
-		<runtime unit="min">90</runtime>
-	</movie>
-	<movie id="837">
-		<genre>Romance</genre>
-		<title>Eat Pray Love</title>
-		<hook>
-			A married woman realizes how unhappy her marriage really is, and that her life needs to go in a different direction. After a painful divorce, she takes off on a round-the-world journey to "find herself". - IMDb
-		</hook>
-		<director>Christie Will Wolf</director>
-		<release>2010</release>
-		<runtime unit="min">133</runtime>
-	</movie>
-	<movie id="533">
-		<genre>Animation</genre>
-		<title>Sing</title>
-		<hook>
-			In a city of humanoid animals, a hustling theater impresario's attempt to save his theater with a singing competition becomes grander than he anticipates even as its finalists' find that their lives will never be the same. - IMDb
-		</hook>
-		<director>Garth Jennings</director>
-		<director>Christophe Lourdelet</director>
-		<release>2016</release>
-		<runtime unit="min">108</runtime>
-	</movie>
-	<movie id="923">
-		<genre>Comedy</genre>
-		<title>We're the Millers</title>
-		<hook>
-			A veteran pot dealer creates a fake family as part of his plan to move a huge shipment of weed into the U.S. from Mexico. - IMDb
-		</hook>
-		<director>Rawson Marshall Thurber</director>
-		<release>2013</release>
-		<runtime unit="min">110</runtime>
-	</movie>
-	<movie id="884">
-		<genre>Animation</genre>
-		<title>Despicable Me 2</title>
-		<hook>
-			When Gru, the world's most super-bad turned super-dad has been recruited by a team of officials to stop lethal muscle and a host of Gru's own, He has to fight back with new gadgetry, cars, and more minion madness. - IMDb
-		</hook>
-		<director>Pierre Coffin</director>
-		<director>Chris Renaud</director>
-		<release>2013</release>
-		<runtime unit="min">98</runtime>
-	</movie>
-	<movie id="">
-		<genre></genre>
-		<title></title>
-		<hook></hook>
-		<director></director>
-		<release></release>
-		<runtime unit="min"></runtime>
-	</movie>
+        <movie id="107">
+                <genre>Romance</genre>
+                <title>The Notebook</title>
+                <hook>kl</hook>
+                <director>Nick Cassavetes</director>
+                <release>2004</release>
+                <runtime unit="min">123</runtime>
+                </movie>
+        <movie id="122">
+                <genre>Horror</genre>
+                <title>Saw 3D - Final Chapter</title>
+                <hook>öjl</hook>
+                <director>Kevin Greutert</director>
+                <release>2010</release>
+                <runtime unit="min">90</runtime>
+                </movie>
+        <movie id="837">
+                <genre>Romance</genre>
+                <title>Eat Pray Love</title>
+                <hook>lkn</hook>
+                <director>Christie Will Wolf</director>
+                <release>2010</release>
+                <runtime unit="min">133</runtime>
+                </movie>
+        <movie id="533">
+                <genre>Animation</genre>
+                <title>Sing</title>
+                <hook>kk</hook>
+                <director>Garth Jennings</director>
+                <director>Christophe Lourdelet</director>
+                <release>2016</release>
+                <runtime unit="min">108</runtime>
+                </movie>
+        <movie id="923">
+                <genre>Comedy</genre>
+                <title>We're the Millers</title>
+                <hook>kk</hook>
+                <director>Rawson Marshall Thurber</director>
+                <release>2013</release>
+                <runtime unit="min">110</runtime>
+                </movie>
+        <movie id="884">
+                <genre>Animation</genre>
+                <title>Despicable Me 2</title>
+                <hook>jd</hook>
+                <director>Pierre Coffin</director>
+                <director>Chris Renaud</director>
+                <release>2013</release>
+                <runtime unit="min">98</runtime>
+</movie>
 </mediacenter>
