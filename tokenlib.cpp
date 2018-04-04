@@ -3,6 +3,7 @@ using namespace std;
 #include <fstream>
 #include <string.h>
 #include "token.h"
+#include <string>
 
 ClToken::ClToken()
 {
@@ -46,56 +47,50 @@ for (zaehler=0;;)
              tokenInhalt = new char[zaehler+1];
              strcpy(tokenInhalt,puffer);
              }
-
           }
        else
           {
           datei.putback(zeichen);
           if (*tokenName!='\0')
              {
-             datei.putback('<');
-          if (tokenChild==NULL)
-          {
-             tokenChild=new ClToken;
-             tokenChild->getToken(datei);
+                datei.putback('<');
+                if (tokenChild==NULL)
+                    {
+                        tokenChild=new ClToken;
+                        tokenChild->getToken(datei);
+                    }
+                else
+                    {
+                    for (child=tokenChild;;child=child->tokenSibling)
+                        {
+                        if (child->tokenSibling==NULL)
+                            {
+                                child->tokenSibling=new ClToken;
+                                child->tokenSibling->getToken(datei);
+                                break;
+                            }
+                        }
+                    }
              }
-
-          else
-          {
-              for (child=tokenChild;;child=child->tokenSibling)
-              {
-                  if (child->tokenSibling==NULL)
-                  {
-                      child->tokenSibling=new ClToken;
-                      child->tokenSibling->getToken(datei);
-                      break;
-                  }
-              }
-
-}
-          }
-           else zustand=istStartTag;
+          else zustand=istStartTag;
           }
        zaehler=0;
        break;
     case '>':
        puffer[zaehler]='\0';
+       if (zustand==istEndTag) return fillToken(1);
        if (zustand==istStartTag)
           {
           att.getAttList(puffer);
           strcpy(tokenName,puffer);
           }
-       /*if (zustand==istEndTag)
-       {
-
-       }*/
        zaehler=0;
        break;
     case '\n':
-       break;
-   //Fehlerbehebung: (Fall Tab) funktioniert:
+            break;
     case '\t':
-        break;
+        if(zeichen=='\t') break;
+            break;
 
     default:
        puffer[zaehler]=zeichen;
@@ -105,7 +100,8 @@ for (zaehler=0;;)
     }
 }
 
-int ClToken::fillToken(int mode)
+int ClToken::fillToken(
+int                    mode)
 {
 if (*tokenName=='\0')
    strcpy(tokenName,"Unbekanntes Element");
@@ -117,7 +113,6 @@ if (tokenInhalt==NULL)
 
 return mode;
 }
-
 
 void ClToken::cleanToken(void)
 {
@@ -134,133 +129,81 @@ if (tokenInhalt!=NULL)
    }
 }
 
-void ClToken::druckeToken(ClText ObText) //ClText ObText ebene raus
+
+
+void ClToken::druckeToken(ClText ObText, string datna) //ClText ObText ebene raus
 {
-    //#################in datei drucken:
-   // ofstream fileout;
-   // fileout.open("NEWwriteBSP.txt"); //geöffnet bzw. angelegt falls noch nicht vorhanden
-    //(couts in fileout ändern)
-//#################
+
+ofstream newFile;
+string fullName;
+
+fullName = datna + ".xml"; // Damit die Datei immer eine XML wird
+newFile.open(fullName.c_str(), ios::out | ios::app);
 
 
-//ClToken *child;
-
-    //###########ebene ausgetauscht durch Objekt deklariert in token.h damit über dieses XML Obj. Zugriff auf
-    // Text Inhalt ########
-
-//druckeTokenEbene(ebene); //rein
-/* TEST:
- * cout << "Printfunc.: " << endl;
-   cout << "ID: " << ObText.getMovieId(1) << endl;
-   cout << "Medium: " << ObText.getMediumKind(1) << endl;
-   cout << "Price: " << ObText.getPrice(1) << endl;
-   cout << "Stock: " << ObText.getStock(1) << endl;*/
-
-//cout << "<" << name() << "> " << inhalt();
-
-    cout << "<" << name(); //z.B.: <movie
+if (!newFile)
+    {
+     cerr << "can't open output file" << endl;
+    }
 
 
-//attribute einfügen bevor Tag schließt:
+//fileout.open("newDATA.xml", ios::app); //funktioniert !
+
+
+//TEST:
+
+
+
+
+newFile << "<" << name();
 if (att.zahlAtt() > 0)
    {
-//druckeTokenEbene(ebene); //raus
+     for (int i=0;i<att.zahlAtt();i++)
+     {
+       newFile << " " << att.zeigeAttName(i) << "="
+            << '"' << att.zeigeAttWert(i) << '"' << '>';
 
-   for (int i=0;i<att.zahlAtt();i++) {
-       cout << " " << att.zeigeAttName(i) << "="
-            << '"' << att.zeigeAttWert(i) << '"';
-
-
-
- /*// 2. Versuch: später einfügen!!!! (funktioniert)
-       for(int j=0;j<7;j++) //j<13
+//Meta Daten aus TXT:
+       for(int j=0;j<=11;j++) //j<13
+           {
            if (!strcmp(att.zeigeAttWert(i),ObText.getMovieId(j)))
-       {
-               //cout << "<ID: " << ObText.getMovieId(j) << ">" << endl;
-               cout << "<meta>" << endl;
-               cout << "<medium>" << ObText.getMediumKind(j) << "</medium>" << endl;
-               cout << "<price>" << ObText.getPrice(j) << "</price>" << endl;
-               cout << "<stock>" << ObText.getStock(j) << "</stock>" << endl;
-
-               //hier nächstes Medium, Preis, Stock der gleichen ID einfügen (?)
-
-               cout << "</meta>" << endl;
-       }*/
+               {
 
 
-//Test:
-   //cout << "Id: " << ObText.getMovieId(j) << endl;
-/*1. Versuch: (gescheitert, neuer Versuch s.o.^)
+               newFile << "<meta>" << endl;
+               newFile << "<medium>" << ObText.getMediumKind(j) << "</medium>" << endl;
+               newFile << "<price>" << ObText.getPrice(j) << "</price>" << endl;
+               newFile << "<stock>" << ObText.getStock(j) << "</stock>" << endl;
+               newFile << "</meta>" << endl;
+               }
+           }
+     }
 
-if (j == ObText.getMovieId(j))
-{
-cout << "ID: " << ObText.getMovieId(j) << endl;
-cout << "Medium: " << ObText.getMediumKind(j) << endl;
-cout << "Price: " << ObText.getPrice(i) << endl;
-cout << "Stock: " << ObText.getStock(i) << endl;
-}*/
-
-} //for loop (att) closed
-
-cout << ">";
    }
-
-if (att.zahlAtt()==0) // > bereits oben bei att drin, hier (damit nicht bei att doppelt) so gelöst
-    cout << ">";
-
-cout << tokenInhalt; //inhalt()
-
-
-//cout  <<"</" << tokenName << ">" <<  endl;
-
-
-cout << "</" << tokenName << ">" <<  endl; // ebene
-
-
-
-
-if (tokenChild!=NULL) tokenChild->druckeToken(ObText);
-
-if (tokenSibling!=NULL) tokenSibling->druckeToken(ObText);
-
-
-
-//Druckfunktion in neue Datei:
-
-//########### in neue Datei drucken:
-//fileout.close();
-//return 0;
-//###########
-
-}
-
-/*)
-void ClToken::druckeTokenEbene(int ebene) //ebene =0
+else if (att.zahlAtt()==0)
 {
-while (ebene > 0)
-      {
-
-    if (name()=="movie")
+newFile << ">";
+    if (tokenChild!=NULL)
     {
-        continue;
+       newFile << endl;
     }
-    else{
-      cout << "| ";
-      ebene = ebene - 1;
 }
-      }
+
+newFile << tokenInhalt;
+
+if (tokenChild!=NULL) tokenChild->druckeToken(ObText, datna);
+
+newFile << "</" << name() << ">" << endl;
+
+if (tokenSibling!=NULL) tokenSibling->druckeToken(ObText, datna);
+
+newFile.close();
+
 
 }
 
-void ClToken::druckeTokenEbene(
-int                            ebene)
-{
-while (ebene > 0)
-      {
-      cout << "| ";
-      ebene = ebene - 1;
-      }
-}
-*/
+
+
+
 
 

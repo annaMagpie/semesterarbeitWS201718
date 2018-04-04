@@ -8,9 +8,13 @@ public:
    char *name() { return tokenName; }
    ClToken *child() { return tokenChild; }
    char *inhalt() { return tokenInhalt; }
-   void druckeToken(ClText ObText); //int ebene
+   void druckeToken(ClText ObText, std::__1::string datna); //int ebene
+
    int getToken(ifstream &datei);
    ClattToken att;
+
+
+
 
 private:
    void cleanToken();
@@ -20,6 +24,9 @@ private:
    ClToken *tokenChild;
    ClToken *tokenSibling;
    char *tokenInhalt;
+   //ClToken *dateiname; weg
+
+
 
 
    } ;

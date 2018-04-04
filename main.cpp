@@ -2,12 +2,11 @@
 using namespace std;
 #include <fstream>
 #include "token.h"
-
 #include <string.h>
 
 enum zustandText zustand;
 
-char name[20];
+//char name[20]; weg
 
 
 int main()
@@ -21,12 +20,26 @@ ClToken *token;
 ClText object;
 
 
+
 //char name[20]; //doppelt?
-char again = 'y';
+char again = 'b';
 char input; // [20] wegen input o / open
 
+cout << "--- read data ---" << endl;
+    eingabe.open("pricelist.txt");
+    object.verarbeiteText(eingabe);
+    eingabe.close();
+    //(öffne TXT)
 
-while (again == 'y'){
+
+    eingabe.open("mediacenter.xml");
+    token=new ClToken;
+   token->getToken(eingabe);
+
+   eingabe.close();
+   //(öffne XML)
+
+while (again == 'b'){
 
 
 cout << "### Menu ###" << endl;
@@ -74,24 +87,41 @@ else
 
 if (input=='e')
 {
-cout << "--- export new file ---" << endl;
-    eingabe.open("pricelist.txt");
-    object.verarbeiteText(eingabe);
-    eingabe.close();
-    //(öffne TXT)
+    cout << "--- export data ---" << endl;
 
 
-    eingabe.open("mediacenter.xml");
-    token=new ClToken;
-   token->getToken(eingabe);
-           token->druckeToken(object);
 
 
-           cout << "3. Test -- (von der main aus)" << endl;//1 //object = Textobjekt, das übergeben wird
+    string dateiname;
 
-    eingabe.close();
-    //(öffne XML)
+    cout << "Please name your new xml-file: ";
+    cin >> dateiname;
 
+//fout.open(dateiname);
+    //getline (cin, dateiname);
+    //dateiname += ".xml";
+     // schreibt nur erste Zeile in neue Datei
+
+
+   token->druckeToken(object, dateiname); //neue xml
+
+/*
+char neueDatei[30];
+
+   ofstream fout;
+   cout << "Name new file:" << endl;
+   cin >> neueDatei;
+
+   fout.open(neueDatei, ofstream::app); //geöffnet bzw. angelegt falls noch nicht vorhanden
+    //(couts in fileout ändern) // ofstream::app (damit daten angefügt werden und nicht nur eine line in datei gespeichert wird
+//#################
+           //drucke token
+
+
+fout.close();
+
+
+*/
 
 
     //Test:
@@ -102,7 +132,7 @@ cout << "--- export new file ---" << endl;
    }
 
 
-cout << "Back to menu? (y/n)" << endl;
+cout << "(b)ack to menu?: " << endl;
 cin >> again;
 } // while loop closed
 

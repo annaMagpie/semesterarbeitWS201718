@@ -6,15 +6,15 @@
                 <director>Nick Cassavetes</director>
                 <release>2004</release>
                 <runtime unit="min">123</runtime>
-                </movie>
-        <movie id="122">
-                <genre>Horror</genre>
+	</movie>
+	<movie id="122">
+		<genre>Horror</genre>
                 <title>Saw 3D - Final Chapter</title>
                 <hook>öjl</hook>
                 <director>Kevin Greutert</director>
                 <release>2010</release>
                 <runtime unit="min">90</runtime>
-                </movie>
+	</movie>
         <movie id="837">
                 <genre>Romance</genre>
                 <title>Eat Pray Love</title>
@@ -22,7 +22,7 @@
                 <director>Christie Will Wolf</director>
                 <release>2010</release>
                 <runtime unit="min">133</runtime>
-                </movie>
+	</movie>
         <movie id="533">
                 <genre>Animation</genre>
                 <title>Sing</title>
@@ -31,7 +31,7 @@
                 <director>Christophe Lourdelet</director>
                 <release>2016</release>
                 <runtime unit="min">108</runtime>
-                </movie>
+	</movie>
         <movie id="923">
                 <genre>Comedy</genre>
                 <title>We're the Millers</title>
@@ -39,14 +39,14 @@
                 <director>Rawson Marshall Thurber</director>
                 <release>2013</release>
                 <runtime unit="min">110</runtime>
-                </movie>
+	</movie>
         <movie id="884">
-                <genre>Animation</genre>
+		<genre>Animation</genre>
                 <title>Despicable Me 2</title>
                 <hook>jd</hook>
                 <director>Pierre Coffin</director>
                 <director>Chris Renaud</director>
                 <release>2013</release>
                 <runtime unit="min">98</runtime>
-</movie>
+	</movie>
 </mediacenter>
