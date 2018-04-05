@@ -1,4 +1,9 @@
-
+/*
+ #######################
+  Parser aus Vorlesung:
+  (12.12.2017 - BSP 9)
+ #######################
+ */
 class ClattToken
    {
 private:

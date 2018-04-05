@@ -1,11 +1,17 @@
+/*
+ #######################
+  Parser aus Vorlesung:
+  (12.12.2017 - BSP 9)
+ ######################
+*/
+
 #include <iostream>
 using namespace std;
 #include <fstream>
 #include <string.h>
 #include "att.h"
 
-int ClattToken::getAttList(
-char                      *eingabe)
+int ClattToken::getAttList(char *eingabe)
 {
 char puffer[100];
 int zaehler;

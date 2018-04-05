@@ -1,3 +1,14 @@
+
+/*
+ #######################
+  Parser aus Vorlesung:
+  (12.12.2017 - BSP 9)
+  --------------------
+  Druckfunktion
+  (ab line 145):
+ #######################
+*/
+
 #include <iostream>
 using namespace std;
 #include <fstream>
@@ -59,6 +70,7 @@ for (zaehler=0;;)
                         tokenChild=new ClToken;
                         tokenChild->getToken(datei);
                     }
+                //Fall: tokenSibling hinzugefügt:
                 else
                     {
                     for (child=tokenChild;;child=child->tokenSibling)
@@ -129,33 +141,65 @@ if (tokenInhalt!=NULL)
    }
 }
 
-
+/*
+ ######################
+  Druckfunktion:
+ ######################
+*/
 
 void ClToken::druckeToken(ClText ObText, string datna) //ClText ObText ebene raus
 {
+/*
+ ######################
+  Versuche:
+ ######################
+
+    Test: Dateiname wird vorgegeben:
+    newFile.open("newDATA.xml", ios::app);
+    -->funktioniert !
+
+    ---------------------------
+
+    char neueDatei[30];
+    ofstream fout;
+    cout << "Name new file:" << endl;
+    cin >> neueDatei;
+    fout.open(neueDatei, ofstream::app);
+
+    ----------------------------
+
+    fout.open(dateiname);
+    getline (cin, dateiname);
+    dateiname += ".xml";
+    schreibt nur erste Zeile in neue Datei
+
+     ----------------------------
+
+  -->durch Wiederholung wird Dateiname immer wieder abgefragt und nur eine Zeile gedruckt /überschrieben.
+  Daher: Dateiname muss aus main-Fubktion übergeben werden.
+ */
 
 ofstream newFile;
+
+
+
 string fullName;
 
-fullName = datna + ".xml"; // Damit die Datei immer eine XML wird
-newFile.open(fullName.c_str(), ios::out | ios::app);
+fullName = datna + ".xml"; // Damit immer eine XML-Datei erstellt wird.
+newFile.open(fullName.c_str(), ios::out | ios::app); //geöffnet bzw. angelegt falls noch nicht vorhanden
+//nach jedem Durchlauf der Funktion soll der Inhalt hinzugefügt werden und die Dati nicht überschreiben.
 
-
+//Fehlermeldeung, falls keine Datei erstellt wurde. (Dieser Falls sollte aber nicht eintreffen.):
 if (!newFile)
     {
      cerr << "can't open output file" << endl;
     }
 
-
-//fileout.open("newDATA.xml", ios::app); //funktioniert !
-
-
-//TEST:
-
-
-
+//Statt durch cout wird durch den Befehl des ofstreams (in dem Falle "newFile") der Inhalt in die Datei gedruckt:
 
 newFile << "<" << name();
+
+//Wenn Attribute vorhanden sind, werden sie gedruckt:
 if (att.zahlAtt() > 0)
    {
      for (int i=0;i<att.zahlAtt();i++)
@@ -163,13 +207,12 @@ if (att.zahlAtt() > 0)
        newFile << " " << att.zeigeAttName(i) << "="
             << '"' << att.zeigeAttWert(i) << '"' << '>';
 
-//Meta Daten aus TXT:
-       for(int j=0;j<=11;j++) //j<13
+//Metadaten aus TXT hinzufügen (Das Textobjekt wurde zuvor der Drukfunktion als Parameter übergeben):
+       for(int j=0;j<=11;j++)
            {
            if (!strcmp(att.zeigeAttWert(i),ObText.getMovieId(j)))
+               //IDs werden aus XML & TXT abgeglichen und somit an die richtige Stelle innerhalb der neuen Datei gedruckt.
                {
-
-
                newFile << "<meta>" << endl;
                newFile << "<medium>" << ObText.getMediumKind(j) << "</medium>" << endl;
                newFile << "<price>" << ObText.getPrice(j) << "</price>" << endl;
@@ -180,6 +223,12 @@ if (att.zahlAtt() > 0)
      }
 
    }
+
+//neue Datei zunächst fehlerhaft, da:
+//Starttags mit Attributen wurden doppelt geschlossen (">>") &
+//Elternelement wurde erst am Ende geöffnet
+//Fehlerbehebung:
+
 else if (att.zahlAtt()==0)
 {
 newFile << ">";
@@ -191,14 +240,17 @@ newFile << ">";
 
 newFile << tokenInhalt;
 
+
 if (tokenChild!=NULL) tokenChild->druckeToken(ObText, datna);
 
 newFile << "</" << name() << ">" << endl;
 
 if (tokenSibling!=NULL) tokenSibling->druckeToken(ObText, datna);
 
-newFile.close();
+//Wenn Kind- oder Geschwisterelemente vorhanden sind, beginnt der nächste Durchlauf der Druckfunktion.
+//Wenn nicht, wird die Datei geschlossen:
 
+newFile.close();
 
 }
 

@@ -12,7 +12,7 @@ private:
 
 public:
 
-    void verarbeiteText(ifstream &datei);
+    void verarbeiteText(ifstream &datei, char befehl);
     char *getMovieId(int line) {return movieId[line];}
     char *getMediumKind(int line) {return mediumKind[line];}
     char *getPrice(int line) {return price[line];}

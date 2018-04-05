@@ -4,8 +4,10 @@
 using namespace std;
 #include "txt.h"
 #include "string.h"
-void ClText::verarbeiteText(ifstream &datei)
+void ClText::verarbeiteText(ifstream &datei, char befehl)
 {
+
+    //cout als Tests bis zur Druckfunktion:
 
     enum zustandText zustand;
     for (zaehler=0,zustand=inId, anzahlFilm=0;;)
@@ -17,14 +19,12 @@ void ClText::verarbeiteText(ifstream &datei)
      case ' ':
          if (zustand==inId)
          {
-             //cout << "ich glaube ich lese di ID ein. dies ist die " << anzahlFilm << ". Leseiteration" << endl;
+             //cout << "ID lesen. dies ist die " << anzahlFilm << ". Wiederholung" << endl;
            zustand=inMedium;
            puffer[zaehler]='\0';
            movieId[anzahlFilm] = new char[zaehler+1];
            strcpy(movieId[anzahlFilm], puffer);
-           cout << " Id: " << movieId[anzahlFilm];
-           //a[anzahlAtt] = new char[zaehler+1];
-           //strcpy(attName[anzahlAtt],puffer);
+
            //cout << "Id: " << puffer;
 
            zaehler=0;
@@ -37,7 +37,7 @@ void ClText::verarbeiteText(ifstream &datei)
              puffer[zaehler]='\0';
              mediumKind[anzahlFilm] = new char[zaehler+1];
              strcpy(mediumKind[anzahlFilm], puffer);
-             cout << " Medium: " << mediumKind[anzahlFilm] ;
+
 
              //cout << " Medium: " << puffer;
 
@@ -45,29 +45,29 @@ void ClText::verarbeiteText(ifstream &datei)
          }
          else if (zustand == inPrice)
          {
-             //cout << "ich glaube ich lese den Preis ein. dies ist die " << anzahlFilm << ". Leseiteration" << endl;
+             //cout << "Preis wird gelesen. die " << anzahlFilm << ". Widerholung" << endl;
              zustand=inStock;
              puffer[zaehler]='\0';
              price[anzahlFilm] = new char[zaehler+1];
              strcpy(price[anzahlFilm], puffer);
-             cout << " Price: " << price[anzahlFilm] ;
+
              //cout << " Preis: " << puffer;
              zaehler=0;
          }
            break;
     case '\n':
-      //cout << "ich glaube ich lese den Bestand ein. dies ist die " << anzahlFilm << ". Leseiteration" << endl;
+      //cout << "Bestand wird gelesen. " << anzahlFilm << ". Wiederholung" << endl;
 
         puffer[zaehler]='\0';
         //cout << " Stock puffer: " << puffer << endl;
         stock[anzahlFilm] = new char[zaehler+1];
         strcpy(stock[anzahlFilm], puffer);
-        cout << " Stock: " << stock[anzahlFilm] << endl;
+
 
 
         zaehler=0;
         anzahlFilm++;
-zustand=inId;
+        zustand=inId;
         break;
 
         default:
@@ -76,20 +76,37 @@ zustand=inId;
            // cout << zeichen << endl;
            break;
     }
-
-
-
 }
+
 /*
+ ###################################
+  TEST:
+  Funktioniert der Parser richtig?
+ ###################################
+
 cout << "TESTAUSGABE:" << endl;
         cout << "ID: " << getMovieId(3) << endl;
         cout << "Medium: " << getMediumKind(3) << endl;
         cout << "Price: " << getPrice(3) S<< endl;
         cout << "Stock: " << getStock(3) << endl;
-      //Test:
-      //cout << "ANZAHL: " << stock[5] << endl;
-    //cout << "ID: " << movieId[3] << endl;*/
+
+      cout << "ANZAHL: " << stock[5] << endl;
+      cout << "ID: " << movieId[3] << endl;
+*/
+
+/*
+ ######################
+  Druckfunktion:
+  (bei Option "Open")
+ ######################
+ */
+    if (befehl=='o'){
+        for (anzahlFilm=0;anzahlFilm<=11;anzahlFilm++){
+        cout << " Id: " << movieId[anzahlFilm];
+        cout << " Medium: " << mediumKind[anzahlFilm] ;
+        cout << " Price: " << price[anzahlFilm] ;
+        cout << " Stock: " << stock[anzahlFilm] << endl;
+    }
+    }
 }
 
-
-// Druckfunktion zum Schluß

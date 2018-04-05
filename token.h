@@ -1,3 +1,10 @@
+/*
+ #######################
+  Parser aus Vorlesung:
+  (12.12.2017 - BSP 9)
+ #######################
+ */
+
 #include "att.h"
 #include "txt.h"
 
@@ -8,26 +15,17 @@ public:
    char *name() { return tokenName; }
    ClToken *child() { return tokenChild; }
    char *inhalt() { return tokenInhalt; }
-   void druckeToken(ClText ObText, std::__1::string datna); //int ebene
-
+   void druckeToken(ClText ObText, std::__1::string datna);
    int getToken(ifstream &datei);
    ClattToken att;
 
-
-
-
 private:
    void cleanToken();
-   //void druckeTokenEbene(int ebene); //raus
    int fillToken(int mode);
    char tokenName[64];
    ClToken *tokenChild;
    ClToken *tokenSibling;
    char *tokenInhalt;
-   //ClToken *dateiname; weg
-
-
-
 
    } ;
 

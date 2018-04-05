@@ -2,7 +2,7 @@
         <movie id="107">
                 <genre>Romance</genre>
                 <title>The Notebook</title>
-                <hook>kl</hook>
+                <hook>Social differences between a man and a rich woman.</hook>
                 <director>Nick Cassavetes</director>
                 <release>2004</release>
                 <runtime unit="min">123</runtime>
@@ -10,7 +10,7 @@
 	<movie id="122">
 		<genre>Horror</genre>
                 <title>Saw 3D - Final Chapter</title>
-                <hook>öjl</hook>
+                <hook>A group of Jigsaw survivors gathers to seek the support of Bobby Dagen.</hook>
                 <director>Kevin Greutert</director>
                 <release>2010</release>
                 <runtime unit="min">90</runtime>
@@ -18,7 +18,7 @@
         <movie id="837">
                 <genre>Romance</genre>
                 <title>Eat Pray Love</title>
-                <hook>lkn</hook>
+                <hook>After her divorce a woman takes off on a round-the-world journey.</hook>
                 <director>Christie Will Wolf</director>
                 <release>2010</release>
                 <runtime unit="min">133</runtime>
@@ -26,7 +26,7 @@
         <movie id="533">
                 <genre>Animation</genre>
                 <title>Sing</title>
-                <hook>kk</hook>
+                <hook>A hustling theater impresario's attempt to save his theater with a singing competition.</hook>
                 <director>Garth Jennings</director>
                 <director>Christophe Lourdelet</director>
                 <release>2016</release>
@@ -35,7 +35,7 @@
         <movie id="923">
                 <genre>Comedy</genre>
                 <title>We're the Millers</title>
-                <hook>kk</hook>
+                <hook>A pot dealer creates a fake family to move a huge shipment of weed into the U.S. from Mexico.</hook>
                 <director>Rawson Marshall Thurber</director>
                 <release>2013</release>
                 <runtime unit="min">110</runtime>
@@ -43,7 +43,7 @@
         <movie id="884">
 		<genre>Animation</genre>
                 <title>Despicable Me 2</title>
-                <hook>jd</hook>
+                <hook>Gru has to stop lethal muscle and a host of Gru's own. He has to fight back with more minion madness.</hook>
                 <director>Pierre Coffin</director>
                 <director>Chris Renaud</director>
                 <release>2013</release>
