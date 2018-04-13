@@ -1,5 +1,5 @@
-
 /*
+
  #######################
   Parser aus Vorlesung:
   (12.12.2017 - BSP 9)
@@ -7,8 +7,8 @@
   Druckfunktion
   (ab line 145):
  #######################
-*/
 
+*/
 #include <iostream>
 using namespace std;
 #include <fstream>
@@ -232,10 +232,10 @@ if (att.zahlAtt() > 0)
 else if (att.zahlAtt()==0)
 {
 newFile << ">";
-    if (tokenChild!=NULL)
-    {
-       newFile << endl;
-    }
+    //if (tokenChild!=NULL)
+    //{
+      // newFile << endl;
+    //}
 }
 
 newFile << tokenInhalt;
@@ -252,7 +252,47 @@ if (tokenSibling!=NULL) tokenSibling->druckeToken(ObText, datna);
 
 newFile.close();
 
+
 }
+
+/*
+ ####################
+  Versuch (Suche):
+ ####################
+ */
+
+
+void ClToken::search(string searchCat, string searchCon){
+
+
+    cout << name() << ": " << inhalt() << endl;
+    if (tokenSibling!=NULL) tokenSibling->search(searchCat, searchCon);
+
+/*
+//ifstream newFile;
+//newFile.open(fullName.c_str(), ios::in);
+
+if (searchCat==name() && searchCon==inhalt()){
+
+
+
+        cout << name() << ": " << inhalt() << endl;
+
+        for (int s=0;tokenSibling!=NULL;s++){
+
+            cout << tokenSibling->tokenName[s] << ": " << tokenSibling->tokenInhalt[s] << endl;
+        }
+
+
+
+}
+           //     else {cout << "not found" << endl;}
+*/
+}
+
+
+
+
 
 
 

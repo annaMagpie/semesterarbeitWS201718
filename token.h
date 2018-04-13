@@ -3,10 +3,12 @@
   Parser aus Vorlesung:
   (12.12.2017 - BSP 9)
  #######################
- */
+
+*/
 
 #include "att.h"
 #include "txt.h"
+//using namespace std;
 
 class ClToken
    {
@@ -14,10 +16,13 @@ public:
    ClToken();
    char *name() { return tokenName; }
    ClToken *child() { return tokenChild; }
+   ClToken *sibling() { return tokenSibling; }
    char *inhalt() { return tokenInhalt; }
-   void druckeToken(ClText ObText, std::__1::string datna);
+   void druckeToken(ClText ObText, string datna);
+   void search(string searchCat, string searchCon);
    int getToken(ifstream &datei);
    ClattToken att;
+
 
 private:
    void cleanToken();

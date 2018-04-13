@@ -13,8 +13,12 @@ ifstream eingabe;
 ClToken *token;
 ClText object;
 
-char again = 'b';
+
 char input;
+string dateiname;
+string category;
+string content;
+
 
 /*
  #####################################
@@ -78,8 +82,13 @@ cout << "\t--- data read ---" << endl;
 
    //Inhalte werden noch nicht gedruckt.
 
-while (again == 'b'){
+//1. Versuch, dass Programm am laufen zu halten:
+//while (again == 'b'){
     //Programm wird nicht beendet, solange der User ins Menü zurückkehren möchte.
+
+//Optimierung: While loop mit switch:
+do
+{
 
 /*
  ######################
@@ -92,7 +101,7 @@ cout << "------------" << endl;
 cout << "(o)pen txt-file" << endl;
 cout << "(e)xport new file" << endl;
 cout << "(s)earch" << endl;
-cout << "(h)elp" << endl;
+cout << "(x) - exit menu" << endl;
 cout << "\nChoose option: " << endl;
 
 cin >> input;
@@ -103,39 +112,42 @@ cin >> input;
  ######################
 */
 
-if (input=='e')
-{
-    string dateiname;
+
+switch(input){
+    case 'e':
+//if (input=='e')
+
 
     cout << "\t--- export data ---" << endl;
     cout << "Please name your new xml-file: ";
     cin >> dateiname;
 
-
-
-
    token->druckeToken(object, dateiname);
    //Weiterleitung an Druckfunktion in tokenlib. Datei wird dort mit Inhalt befüllt.
+   cout << "Your file was created." << endl;
 
+    break;
 
-
-//Test:
-//cout << "Id: " << object.getMovieId(6) << endl;
-
-
-}//if 'e' closed
 
 /*
  ######################
   Open txt-file:
  ######################
 */
+case 'o':
 
-if (input=='o'){
+//if (input=='o'){
     cout << "\t--- open txt-file ---" << endl;
     object.verarbeiteText(eingabe, input);
     //Input wird hier relevant.
-}
+
+    break;
+
+case 'x':
+    cout << "You want to leave? Please confirm: " << endl;
+
+    break;
+
 
 
 /*
@@ -143,27 +155,43 @@ if (input=='o'){
   Search content:
   (in progress)
  ######################
-if (input=='s')
-{
-char category[50];
-char content[50];
+ */
+case 's':
 
-cout << "Type category: " << endl;
-cin >> category;
+    cout << "Type category: " << endl;
+    cin >> category;
 
-cout << "Type search word: " << endl;
-cin >> content;
+    cout << "Type search word: " << endl;
+    cin >> content;
+/*
+    if (child->tokenSibling()==category){
+    token->search(category, content);
+    }
+    else {cout << "no" << endl;}
 
-token->druckeToken(object, dateiname, category, content);
+  */
+    break;
 
-
+default:
+    cout << "False instruction. Please try again. " << endl;
 
 }
-*/
+cout << endl << "Close programm with 'x' or type any other character to go back to menu." << endl;
+cin >> input;
+}
+while (input!='x');
 
-cout << "(b)ack to menu?: " << endl;
-cin >> again;
-} // while loop closed
 
+
+
+//1. Versuch, dass Programm am laufen zu halten:
+//cout << "(b)ack to menu?: " << endl;
+//cin >> again;
+
+
+
+
+//Test:
+//cout << "Id: " << object.getMovieId(6) << endl;
 
 } //main closed
