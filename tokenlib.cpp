@@ -232,10 +232,10 @@ if (att.zahlAtt() > 0)
 else if (att.zahlAtt()==0)
 {
 newFile << ">";
-    //if (tokenChild!=NULL)
-    //{
-      // newFile << endl;
-    //}
+    if (tokenChild!=NULL)
+    {
+       newFile << endl;
+    }
 }
 
 newFile << tokenInhalt;
